@@ -27,7 +27,12 @@ public class LocationController {
 	public ResponseEntity<?> updateLocation(){
 		
 		// using random numbers representing the live coordinates -- latitude and longitude
-		kafkaService.updateLocation("(" + Math.round(Math.random()*100) + ", " + Math.round(Math.random()*100) + ")");
+		for(int i =0; i < 100000; i++) {
+			kafkaService.updateLocation("(" + Math.round(Math.random()*100) + ", " + Math.round(Math.random()*100) + ")");
+		}
 		return new ResponseEntity<>(Map.of("message", "location updated"), HttpStatus.OK);
+		
+		// kafkaService.updateLocation("(" + Math.round(Math.random()*100) + ", " + Math.round(Math.random()*100) + ")");
+		// return new ResponseEntity<>(Map.of("message", "location updated"), HttpStatus.OK);
 	}
 }
